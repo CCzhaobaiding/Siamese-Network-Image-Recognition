@@ -4,11 +4,13 @@
 模型中有两个姊妹网络，它们是相同的神经网络，具有完全相同的权重。映像对中的每个映像都馈送到这些网络之一。选择使用对比损失函数优化网络，而 siamese 架构的目标不是对输入图像进行分类，而是区分它们。因此，分类损失函数（如交叉熵）不是最佳拟合。相反，此体系结构更适合使用对比函数。直观地说，这个函数只是评估网络区分给定图像对的程度。
 对比损失函数如下：
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7baa6003-b6c7-47eb-b748-8bf65b483031/Untitled.png)
+![image](https://user-images.githubusercontent.com/92656732/180588358-21a4ff82-3353-43eb-80ae-7da79c8737e8.png)
+
 
 其中 Dw 定义为姊妹暹罗网络输出之间的欧氏距离，，X1和X2是输入数据对，Y值为1或0，如果模型预测输入是相似的，那么Y的值为0，否则Y为1，max（）是表示0和m-Dw之间较大值的函数，m是大于0的边际价值（margin value），有一个边际价值表示超出该边际价值的不同对不会造成损失。从数学上讲，欧氏距离为：
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4cfe14ee-5197-4e56-bc57-3d4ec9c2ed8f/Untitled.png)
+![image](https://user-images.githubusercontent.com/92656732/180588381-6ccd40c1-fae4-4895-bbe6-c3f07a209981.png)
+
 
 其中 Gw 是其中一个姊妹网络的输出。X1 和 X2 是输入数据对。
 
@@ -17,12 +19,13 @@
 改进前使用原始数据集，数据集中有只有成人照片，卷积层为三层，训练周期 100，学习效果较差，图像对比结果出现了很大的问题。正确率极低，仅有少部分的结果正确，且图像距离较小。
 将周期改为 150，其次，训练集数据集更换为刚才介绍的数据集，并由于缺少各年龄段的特征学习，加入了少量的儿童时期的图像。卷积层改成六层，emmm再加电脑跑不动了，最效果计算的图像距离减小了很多，并且正确概率也得到显著提升。
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b563a4c4-a91f-4c9e-9f00-b2f77b63ae03/Untitled.png)
 
 改进前
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9591757a-8921-4357-a40f-2f7d24f46c97/Untitled.png)
+![image](https://user-images.githubusercontent.com/92656732/180588386-ef53f0d6-8f7a-4e51-95c1-cf6bc8ad4b19.png)
+
 
 改进后
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c8fd8f49-2a6a-4c4c-a386-232b00e64d51/Untitled.png)
+![image](https://user-images.githubusercontent.com/92656732/180588401-bedd0412-7f50-4b6c-af69-49f82e211369.png)
+
